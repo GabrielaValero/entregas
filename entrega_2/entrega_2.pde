@@ -1,3 +1,6 @@
+//gabriela Valero 202313995
+//entrega 2
+
 int incrementos = 50;
 int posX = 0;
 int speedX = 6;
