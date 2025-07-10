@@ -1,5 +1,5 @@
 // Gabriela Valero 202313995 - Entrega 6
-// Historia interactiva con imágenes (inicio, clímax, desenlace)
+// Historia interactiva con imágenes (inicio, clímax, desenlace) historia: el libro de la vida 
 
 PImage img;         // Imagen actual
 int index = 0;      // Estado actual: 0=inicio, 1=clímax, 2=desenlace
