@@ -1,14 +1,13 @@
 //Gabriela valero-202313995 
-//entrega 5
+//entrega 5  
 
 import processing.sound.*;
 
-SoundFile SoundFile;
+int numCirculos = 60; 
+SoundFile cancion;
 FFT fft;
 int bands = 64;
-float [] spectrum = new float [bands];
-
-int numCirculos = 60;  
+float[] spectrum = new float[bands]; 
 
 void setup() {
   size(1000, 600);
@@ -16,10 +15,10 @@ void setup() {
   noStroke();
   frameRate(30);
   
- SoundFile = new SoundFile(this, "Wicked_Game.mp3");
- fft = new FFT (this, bands);
- fft.input(SoundFile);
- SoundFile.play();
+  cancion = new SoundFile(this, "Wicked_Game.mp3");
+  fft = new FFT(this, bands);
+  fft.input(cancion);
+  cancion.play();
 }
 
 void draw() {
