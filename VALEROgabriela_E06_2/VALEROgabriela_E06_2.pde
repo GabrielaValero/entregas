@@ -1,6 +1,7 @@
 // Gabriela Valero 202313995
-//El gato se mueve con flechas y persigue a un raton 
-// Cuando el gato lo alcanza y se lo "come", su barriga crece y el ratón reaparece en otro lado. 
+// El gato se mueve con flechas y persigue a un ratón.
+// Cuando el gato lo alcanza y se lo "come", su barriga crece y el ratón reaparece en otro lado.
+// El gato maúlla al moverse y el ratón chilla al ser atrapado.
 
 Gato miGato;
 Raton miRaton;
@@ -30,15 +31,28 @@ void draw() {
   if (distancia < 60) {
     miGato.comer();
     miRaton.reaparecer();
+    miRaton.chillar(); // Onomatopeya del ratón
     puntos++;
   }
 }
 
 void keyPressed() {
-  if (keyCode == LEFT) miGato.posX -= miGato.velocidad;
-  if (keyCode == RIGHT) miGato.posX += miGato.velocidad;
-  if (keyCode == UP) miGato.posY -= miGato.velocidad;
-  if (keyCode == DOWN) miGato.posY += miGato.velocidad;
+  if (keyCode == LEFT) {
+    miGato.posX -= miGato.velocidad;
+    miGato.maullar();
+  }
+  if (keyCode == RIGHT) {
+    miGato.posX += miGato.velocidad;
+    miGato.maullar();
+  }
+  if (keyCode == UP) {
+    miGato.posY -= miGato.velocidad;
+    miGato.maullar();
+  }
+  if (keyCode == DOWN) {
+    miGato.posY += miGato.velocidad;
+    miGato.maullar();
+  }
 }
 
 void mousePressed() {
@@ -48,7 +62,7 @@ void mousePressed() {
 }
 
 // -------------------------------------------------
-// fondo, estetica
+// fondo, estética
 
 void dibujarFondo() {
   noStroke();
@@ -83,7 +97,7 @@ void dibujarFondo() {
     fill(#284011);
     rect(i, height - 115, 4, 20); // tallo
 
-    fill(#F2A7A0); // petalos 
+    fill(#F2A7A0); // pétalos
     ellipse(i, height - 125, 10, 10);
     fill(#6B90BF);
     ellipse(i + 5, height - 120, 10, 10);
@@ -95,6 +109,7 @@ void dibujarFondo() {
     ellipse(i, height - 123, 5, 5);
   }
 }
+
 // -------------------------------------------------
 // Clase Animal (padre)
 
@@ -123,6 +138,10 @@ class Gato extends Animal {
   void comer() {
     estomago += 5;
     if (estomago > 100) estomago = 40;
+  }
+
+  void maullar() {
+    println("¡Miau!");
   }
 
   void display() {
@@ -156,18 +175,17 @@ class Gato extends Animal {
     fill(0);
     ellipse(posX + 35, posY - 30, 4, 4);
     ellipse(posX + 45, posY - 30, 4, 4);
-    
+
     // Nariz
-fill(#F2BBD9);
-noStroke();
-triangle(posX + 36, posY - 23, posX + 44, posY - 23, posX + 40, posY - 18);
+    fill(#F2BBD9);
+    noStroke();
+    triangle(posX + 36, posY - 23, posX + 44, posY - 23, posX + 40, posY - 18);
 
     // Cola
     stroke(#E0DCD3);
     strokeWeight(6);
     noFill();
     bezier(posX - 50, posY, posX - 80, posY - 10, posX - 60, posY + 30, posX - 90, posY + 20);
-    
   }
 }
 
@@ -185,6 +203,10 @@ class Raton extends Animal {
   void reaparecer() {
     posX = random(100, width - 100);
     posY = random(150, height - 150);
+  }
+
+  void chillar() {
+    println("¡Squeak squeak!");
   }
 
   void display() {
